@@ -51,4 +51,28 @@ class RunTest {
 		card = deck.draw();
 		Run.outputCard(card);
 	}
+
+	@Test
+	void test3() {
+		Deck deck = new Deck();
+	    deck.put(new Card(Card.Mark.DIA, 11));
+	    deck.put(new Card(Card.Mark.HEART, 10));
+		Run.battle(deck);
+
+	    deck.put(new Card(Card.Mark.DIA, 9));
+	    deck.put(new Card(Card.Mark.HEART, 10));
+		Run.battle(deck);
+
+	    deck.put(new Card(Card.Mark.DIA, 10));
+	    deck.put(new Card(Card.Mark.HEART, 10));
+		Run.battle(deck);
+
+	    deck.put(new Card(Card.Mark.HEART, 10));
+	    deck.put(new Card(Card.Mark.HEART, 10));
+		Run.battle(deck);
+
+	    deck.put(new Card(Card.Mark.HEART, 10));
+	    deck.put(Card.createJoker());
+		Run.battle(deck);
+	}
 }

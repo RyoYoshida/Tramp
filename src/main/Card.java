@@ -5,15 +5,17 @@ public class Card {
 	private int number;
 
 	public enum Mark {
-		JOKER("ジョーカー"),
-		SPADE("スペード"),
-		DIA("ダイヤ"),
-		HEART("ハート"),
-		CLOVER("クローバー");
+		JOKER("ジョーカー", 0),
+		SPADE("スペード", 1),
+		DIA("ダイヤ", 2),
+		HEART("ハート", 3),
+		CLOVER("クローバー", 4);
 
 		private final String name;
-		Mark(String name) {
+		private final int priority;
+		Mark(String name, int priority) {
 	        this.name = name;
+	        this.priority = priority;
 	    }
 	};
 
@@ -64,5 +66,33 @@ public class Card {
 	
 	public boolean isJoker() {
 		return mark == Mark.JOKER;
+	}
+
+	public int compare(Card card) {
+		int compare;
+		if(this.mark == Mark.JOKER) {
+			if(card.mark == Mark.JOKER) {
+				compare = 0;
+			}else {
+				compare = -1;
+			}
+		}else if(card.mark == Mark.JOKER) {
+			compare = 1;
+		}else {
+			if(this.number > card.number) {
+				compare = -1;
+			}else if(this.number < card.number) {
+				compare = 1;
+			}else {
+				if(this.mark.priority > card.mark.priority) {
+					compare = 1;
+				}else if(this.mark.priority < card.mark.priority) {
+					compare = -1;
+				}else {
+					compare = 0;
+				}
+			}
+		}
+		return compare;
 	}
 }
