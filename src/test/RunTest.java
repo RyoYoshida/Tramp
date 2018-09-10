@@ -63,6 +63,10 @@ class RunTest {
 	    deck.put(new Card(Card.Mark.HEART, 10));
 		Run.battle(deck);
 
+	    deck.put(new Card(Card.Mark.DIA, 1));
+	    deck.put(new Card(Card.Mark.HEART, 10));
+		Run.battle(deck);
+
 	    deck.put(new Card(Card.Mark.DIA, 10));
 	    deck.put(new Card(Card.Mark.HEART, 10));
 		Run.battle(deck);

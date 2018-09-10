@@ -2,24 +2,8 @@ package main;
 
 public class Run {
 	public static void main(String args[]){
-		Card card = new Card(Card.Mark.HEART, 10);
-		outputCard(card);
-
 		Deck deck = new Deck();
-		card = deck.draw();
-		outputCard(card);
-		card = deck.draw();
-		outputCard(card);
-		card = deck.draw();
-		outputCard(card);
-
 		deck.shuffle();
-		card = deck.draw();
-		outputCard(card);
-		card = deck.draw();
-		outputCard(card);
-		card = deck.draw();
-		outputCard(card);
 
 		battle(deck);
 	}
@@ -29,17 +13,17 @@ public class Run {
 	}
 
 	public static void battle(Deck deck) {
-		System.out.println("カードを2枚引いて判定します。");
+		System.out.println("カードを2枚引いて2枚目と勝負します。");
 		Card card1 = deck.draw();
 		Card card2 = deck.draw();
 		outputCard(card1);
 		outputCard(card2);
 
 		int compare = card1.compare(card2);
-		if(compare > 0) {
-			System.out.println(card1.getMarkAndNumber() + "の勝ちです。");
-		}else if(compare < 0) {
-			System.out.println(card2.getMarkAndNumber() + "の勝ちです。");
+		if(compare < 0) {
+			System.out.println("勝ちです。");
+		}else if(compare > 0) {
+			System.out.println("負けです。");
 		}else {
 			System.out.println("引き分けです。");
 		}
