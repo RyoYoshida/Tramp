@@ -69,37 +69,25 @@ public class Card {
 	}
 
 	public int compare(Card card) {
-		int compare;
-		if(this.mark == Mark.JOKER) {
-			if(card.mark == Mark.JOKER) {
-				compare = 0;
-			}else {
-				compare = -1;
-			}
-		}else if(card.mark == Mark.JOKER) {
-			compare = 1;
+		return card.power() - this.power();
+	}
+
+	private int power() {
+		int power = 0;
+
+		if(mark == Mark.JOKER) {
+			// ジョーカーを15として扱う。
+			power = 15;
+		}else if(number == 1) {
+			// Aceを14として扱う。
+			power += 13;
 		}else {
-			// Aceを14として扱う
-			int n1 = this.number;
-			int n2 = card.number;
-			if(n1 == 1) n1 += 13;
-			if(n2 == 1) n2 += 13;
-			
-			if(n1 > n2) {
-				compare = -1;
-			}else if(n1 < n2) {
-				compare = 1;
-			}else {
-				// 同値の場合マークで判定
-				if(this.mark.priority > card.mark.priority) {
-					compare = -1;
-				}else if(this.mark.priority < card.mark.priority) {
-					compare = 1;
-				}else {
-					compare = 0;
-				}
-			}
+			power = number;
 		}
-		return compare;
+
+		//パワー値を10倍してマーク値を加点する。
+		power = power*10 + mark.priority;
+		
+		return power;
 	}
 }
