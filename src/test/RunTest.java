@@ -1,5 +1,9 @@
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -78,5 +82,22 @@ class RunTest {
 	    deck.put(new Card(Card.Mark.HEART, 10));
 	    deck.put(Card.createJoker());
 		Run.battle(deck);
+	}
+	
+	@Test
+	void test4() {
+		Deck deck = new Deck();
+		List<Card> cards = new ArrayList<Card>();
+		while(true) {
+			Card card = deck.draw();
+			if(card == null) {
+				break;
+			}else {
+				cards.add(deck.draw());
+			}
+		}
+		Card card = new Card(Card.Mark.HEART, 10);
+		cards.stream().filter(c -> c.compare(card) <= 0).collect(Collectors.toList());
+		cards.forEach(c -> Run.outputCard(c));
 	}
 }
